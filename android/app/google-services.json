@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "689335359320",
+    "project_id": "diu-lab-management",
+    "storage_bucket": "diu-lab-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689335359320:android:05b068b35405f47f26772d",
+        "android_client_info": {
+          "package_name": "com.example.diu_lab_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689335359320-r9734d1g4pcs2prao5p91vijipf1uorq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diu_lab_management",
+            "certificate_hash": "8f2820ea13f9eb8cfd78882a30de4e1cd22d7687"
+          }
+        },
+        {
+          "client_id": "689335359320-s2c7jt9c0rt371c4uvuhhm2hnml0qei7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfykAE0ZjxlJFl2cAm9axp6B8wBuZymJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689335359320-s2c7jt9c0rt371c4uvuhhm2hnml0qei7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
