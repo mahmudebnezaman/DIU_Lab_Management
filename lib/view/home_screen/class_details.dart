@@ -98,18 +98,6 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                   ],
                 ),
                 10.heightBox,
-                // customTextFeild(title: 'Add Student', hint: 'ID', controller: controller.studentIdController),
-                // Center(
-                //   child: myButton(
-                //     title: 'confirm',
-                //     buttonSize: 12.0,
-                //     color: Colors.blue,
-                //     textColor: whiteColor,
-                //     onPress: (){
-                //       controller.registerNewStudent(widget.data.id);
-                //     }
-                //   ),
-                // ),
                 'Provide student ID to evaluate'.text.color(highEmphasis).size(20).bold.makeCentered(),
                 10.heightBox,
                 customTextFeild(title: 'Student ID', hint: 'xxx-xx-xxxxx', controller: controller.studentIdController, prefixIcon:const Icon(Icons.people)),
