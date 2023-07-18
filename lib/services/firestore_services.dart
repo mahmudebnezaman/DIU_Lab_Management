@@ -35,7 +35,6 @@ class FireStoreServices{
           .collection('users')
           .doc(auth.currentUser!.uid)
           .collection('course')
-          //here the course collection consist of multiple documents each document have a field name 'course_title' and an collection named 'students' students collection consist of multiple documents of student id i want to show the course_title field name from the parent document 
           .snapshots();
   }
 }

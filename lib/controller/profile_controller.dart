@@ -70,15 +70,6 @@ class ProfileController extends GetxController {
     isloading(false);
   }
 
-  updateEmergencyContact({required contact, required name}) async {
-    var store = firestore.collection(usersCollection).doc(auth.currentUser!.uid);
-    await store.set({
-      'emergency_contact': contact,
-      'emergency_contact_name': name
-    },SetOptions(merge: true));
-    isloading(false);
-  }
-
   void reset() {
     profileImagePath.value = '';
     profileImageLink = '';

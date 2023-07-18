@@ -17,34 +17,6 @@ class SemesterController extends GetxController {
   var projectController = TextEditingController();
   var labFinalController = TextEditingController();
 
-Future<void> registerNewStudent(String docId) async {
-  try {
-    String studentId = studentIdController.text; // Get the student ID from the controller
-
-    await firestore
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-        .collection('course')
-        .doc(docId)
-        .collection('students')
-        .doc(studentId) // Set the document ID to the student ID
-        .set({
-          'id': studentId,
-          'week_one_lp': '0',
-          'week_two_lp': '0',
-          'week_three_lp': '0',
-          'week_four_lp': '0',
-          'week_five_lp': '0',
-          'assignment': '0',
-          'project': '0',
-          'lab_final': '0'
-        });
-    isloading.value = false;
-  } catch (e) {
-    print('Error registering new student: $e');
-    isloading(false);
-  }
-}
 
   Future<void> editStudentResult(String courseId, String studentId) async {
   try {

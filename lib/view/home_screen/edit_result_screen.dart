@@ -311,19 +311,6 @@ class _EditResultScreenState extends State<EditResultScreen> {
                   ],
                 ),
                 5.heightBox,
-                // 5.heightBox,
-                // customTextFeild(title: 'Assignment: ', hint: 'out of 10', keytype: TextInputType.number, prefixIcon: const Icon(Icons.assignment), controller: controller.assignmentController),
-                // 'out of 10'.text.color(fontGrey).make(),
-                // const Divider(),
-                // 5.heightBox,
-                // customTextFeild(title: 'Project: ', hint: 'out of 25', keytype: TextInputType.number, prefixIcon: const Icon(Icons.build_rounded), controller: controller.projectController),
-                // 'out of 25'.text.color(fontGrey).make(),
-                // const Divider(),
-                // 5.heightBox,
-                // customTextFeild(title: 'Lab Final: ', hint: 'out of 30', keytype: TextInputType.number, prefixIcon: const Icon(Icons.edit), controller: controller.labFinalController),
-                // 'out of 30'.text.color(fontGrey).make(),
-                // const Divider(),
-                5.heightBox,
                 Obx(() => controller.isloading.value
                   ? loadingIndicator()
                   : myButton(

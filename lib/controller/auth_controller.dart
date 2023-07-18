@@ -56,15 +56,6 @@ class AuthController extends GetxController {
     });
   }
 
-  //Email varification
-  Future<void> sendEmailVarification(context) async{
-    try {
-      await auth.currentUser?.sendEmailVerification();
-    }on FirebaseAuthException catch (e) {
-      VxToast.show(context, msg: e.toString());
-    }
-  }
-
   //signout method
   signoutMethod(context) async {
     try {

@@ -37,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(icApplogo, height: 200,),
               'Welcome To DIU Lab Management'.text.size(20).bold.color(highEmphasis).make(),
