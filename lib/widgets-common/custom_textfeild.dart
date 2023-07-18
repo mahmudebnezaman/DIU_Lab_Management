@@ -13,18 +13,13 @@ Widget customTextFeild({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      title!.text
-          .color(highEmphasis)
-          .fontFamily(semibold)
-          .size(20)
-          .make(),
-      5.heightBox,
       TextFormField(
         onTap: onTap,
         maxLength: maxLength,
         readOnly: readOnly,
         controller: controller,
         decoration: InputDecoration(
+          labelText: title,
           prefixIcon: prefixIcon,
           hintStyle: const TextStyle(
             fontFamily: semibold,

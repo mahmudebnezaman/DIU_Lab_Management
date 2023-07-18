@@ -20,6 +20,15 @@ class EditProfileInfo extends StatefulWidget {
 }
 
 class _EditProfileInfoState extends State<EditProfileInfo> {
+
+
+  var controller = Get.find<ProfileController>();
+
+  @override
+  void initState() {
+    controller.nameController.text = widget.data['name'];
+    super.initState();
+  }
   
 
   bool isPass = true;
@@ -33,7 +42,6 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
   @override
   Widget build(BuildContext context) {
     var nameIcon = const Icon(Icons.account_circle_outlined, size: 25,);
-    var controller = Get.find<ProfileController>();
 
     return WillPopScope(
       onWillPop: () async {
@@ -41,9 +49,20 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
         return true;
       },
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(),
-          body: Padding(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 241, 174, 251),
+                Colors.white
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+            )
+          ),
+          child: Padding(
             padding: const EdgeInsets.all(24),
             child: Obx(
               ()=> Column(
@@ -51,18 +70,19 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
                 children: [
                   Stack(
                       children: [
-                        widget.data['imageUrl'] == '' && controller.profileImagePath.isEmpty? Image.asset(icUser,fit: BoxFit.cover,height: 100,width: 100, color: fontGrey,).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
-                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 100,width: 100).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make()
-                        : Image.file(File(controller.profileImagePath.value), width: 100, fit: BoxFit.cover,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make(),
+                        widget.data['imageUrl'] == '' && controller.profileImagePath.isEmpty? const Icon(Icons.account_circle, size: 200, color: primary,).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
+                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 200,width: 200).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make()
+                        : Image.file(File(controller.profileImagePath.value), width: 200, fit: BoxFit.cover,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make(),
                         Align(
                           alignment: Alignment.bottomRight,
-                          child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 15,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {
+                          child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 30,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {
                       controller.changeImage(context);})),
-    
+            
                       ],
-                    ).box.height(100).width(100).make(),
-                  const Divider(),
+                    ).box.height(200).width(200).make(),
                   20.heightBox,
+                  'Change your profile name'.text.color(highEmphasis).size(20).bold.make(),
+                  10.heightBox,
                   customTextFeild(
                     controller: controller.nameController,
                     hint: 'Enter your name',
@@ -103,10 +123,10 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
                           );
                           VxToast.show(context, msg: 'Updated');
                         } else{
-                          VxToast.show(context, msg: 'Password doesnot matched with old password');
+                          VxToast.show(context, msg: 'Password doesnot matched');
                           controller.isloading(false);
                         }
-                     },
+                      },
                       textColor: whiteColor,
                       title: 'Save',
                     ),
@@ -117,6 +137,7 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
             ),
           ),
         ),
+      ),
     );
   }
 }

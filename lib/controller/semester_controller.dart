@@ -17,80 +17,41 @@ class SemesterController extends GetxController {
   var projectController = TextEditingController();
   var labFinalController = TextEditingController();
 
-  Future<void> createNewSemester(String courseTitle) async {
-    try {
-      isloading.value = true;
-      await firestore
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-      .collection('course')
-      .doc()
-      .set({
-        'course_title': courseTitle,
-        // Add more fields as needed
-      });
-      isloading.value = false;
-    } catch (e) {
-      print('Error creating new course: $e');
-      isloading.value = false;
-    }
-  }
-
-  Future<void> createNewCourse(String docId) async {
-    try {
-      await firestore
-      .collection('users')
-      .doc(auth.currentUser!.uid)
-      .collection('course')
-      .doc(docId)
-      .collection('section')
-      .add({
-        'section_name': courseNameController.text,
-        // Add more fields as needed
-      });
-      isloading.value = false;
-    } catch (e) {
-      print('Error creating new section: $e');
-      isloading.value = false;
-    }
-  }
-
-  Future<void> registerNewStudent(String docId, String courseId) async {
-    try {
-      await firestore
-          .collection('users')
-          .doc(auth.currentUser!.uid)
-          .collection('course')
-          .doc(docId)
-          .collection('section')
-          .doc(courseId)
-          .collection('students')
-          .add({
-            'id': studentIdController.text,
-            'week_one_lp': '0',
-            'week_two_lp': '0',
-            'week_three_lp': '0',
-            'week_four_lp': '0',
-            'week_five_lp': '0',
-            'assignment': '0',
-            'project': '0',
-            'lab_final': '0'
-          });
-      isloading.value = false;
-    } catch (e) {
-      print('Error registering new student: $e');
-      isloading(false);
-    }
-  }
-
-  Future<void> editStudentResult(String docId, String courseId, String studentId) async {
+Future<void> registerNewStudent(String docId) async {
   try {
+    String studentId = studentIdController.text; // Get the student ID from the controller
+
     await firestore
         .collection('users')
         .doc(auth.currentUser!.uid)
         .collection('course')
         .doc(docId)
-        .collection('section')
+        .collection('students')
+        .doc(studentId) // Set the document ID to the student ID
+        .set({
+          'id': studentId,
+          'week_one_lp': '0',
+          'week_two_lp': '0',
+          'week_three_lp': '0',
+          'week_four_lp': '0',
+          'week_five_lp': '0',
+          'assignment': '0',
+          'project': '0',
+          'lab_final': '0'
+        });
+    isloading.value = false;
+  } catch (e) {
+    print('Error registering new student: $e');
+    isloading(false);
+  }
+}
+
+  Future<void> editStudentResult(String courseId, String studentId) async {
+  try {
+    await firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('course')
         .doc(courseId)
         .collection('students')
         .doc(studentId)
@@ -110,7 +71,5 @@ class SemesterController extends GetxController {
     isloading.value = false;
   }
 }
-
-
 
 }

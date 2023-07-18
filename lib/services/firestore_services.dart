@@ -10,36 +10,32 @@ class FireStoreServices{
           .collection(semesterCollection)
           .snapshots();
   }
-  static getSection(docId){
+  static getStudents(courseId){
     return firestore
           .collection('users')
           .doc(auth.currentUser!.uid)
           .collection('course')
-          .doc(docId)
-          .collection('section')
-          .snapshots();
-  }
-  static getStudents(docId, courseId){
-    return firestore
-          .collection('users')
-          .doc(auth.currentUser!.uid)
-          .collection('course')
-          .doc(docId)
-          .collection('section')
           .doc(courseId)
           .collection('students')
           .snapshots();
   }
-  static getStudentDetails(docId, courseId, studentId){
+  static getStudentDetails(courseId, studentId){
     return firestore
           .collection('users')
           .doc(auth.currentUser!.uid)
           .collection('course')
-          .doc(docId)
-          .collection('section')
           .doc(courseId)
           .collection('students')
           .doc(studentId)
+          .snapshots();
+  }
+
+  static getCoursesHomePage(){
+    return firestore
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('course')
+          //here the course collection consist of multiple documents each document have a field name 'course_title' and an collection named 'students' students collection consist of multiple documents of student id i want to show the course_title field name from the parent document 
           .snapshots();
   }
 }

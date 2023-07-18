@@ -38,12 +38,24 @@ changeScreen(){
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(icApplogo).box.size(220, 220).make(),
-          ],
+      body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 241, 174, 251),
+                Colors.white
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+            )
+          ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(icApplogo).box.size(220, 220).make(),
+            ],
+          ),
         ),
       ),
     );

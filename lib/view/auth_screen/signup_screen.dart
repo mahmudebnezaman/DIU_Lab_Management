@@ -20,8 +20,8 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
 
   
-  var nameIcon = const Icon(Icons.account_circle_outlined, size: 25,);
-  var emailIcon = const Icon(Icons.email_outlined, size: 25,);
+  var nameIcon = const Icon(Icons.account_circle, size: 25,);
+  var emailIcon = const Icon(Icons.email, size: 25,);
 
   bool? isCheck = true;
   bool? isValid = false;
@@ -93,7 +93,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
    return Scaffold(
     // resizeToAvoidBottomInset: false,
-    backgroundColor: whiteColor,
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -105,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                 10.heightBox,
                 Image.asset(icApplogo, width: 150,),
                 5.heightBox,
-                'Sign Up'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
+                'Create New Account'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
                 //textfeild
                 25.heightBox,
                 customTextFeild(title: 'Name', hint: 'Enter your name', controller: nameController, prefixIcon: nameIcon),
@@ -130,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                 5.heightBox,
                 controller.isloading.value ? loadingIndicator() : myButton(
                   color: isCheck == true ? primary : lightGrey,
-                  title: 'Sign Up',
+                  title: 'Create New Account',
                   textColor: isCheck == true ? whiteColor : fontGrey,
                   onPress: (){
                     vaildation();
@@ -140,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                 10.heightBox,
                 'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
                 10.heightBox,
-                'Sing in here'.text.color(primary).size(20).semiBold.make().onTap((){
+                'Log In'.text.color(primary).size(20).semiBold.make().onTap((){
                    Get.back();
                 }),
               ],

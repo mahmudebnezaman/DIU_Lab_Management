@@ -10,17 +10,12 @@ Widget customPasswordFeild({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      title!.text
-          .color(highEmphasis)
-          .fontFamily(semibold)
-          .size(20)
-          .make(),
-      5.heightBox,
       TextFormField(
         obscureText: obsText,
         controller: controller,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.lock_outlined, size: 25,),
+          labelText: title,
+          prefixIcon: const Icon(Icons.lock, size: 25,),
           suffixIcon: suffixIcon,
           hintStyle: const TextStyle(
             fontFamily: semibold,

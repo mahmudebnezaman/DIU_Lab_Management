@@ -9,6 +9,7 @@ import 'package:diu_lab_management/view/profile_screen/edit_profile.dart';
 
 import 'package:diu_lab_management/const/consts.dart';
 import 'package:diu_lab_management/const/loading_indicator.dart';
+import 'package:diu_lab_management/widgets-common/appbar_widget.dart';
 import 'package:diu_lab_management/widgets-common/end_drawer.dart';
 
 import 'package:diu_lab_management/widgets-common/my_button.dart';
@@ -36,76 +37,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: 'Profile'.text.bold.make()),
+      appBar: appBarWidget(context: context, title: 'Profile'),
       endDrawer: drawerWidget(context.screenWidth),
-      body: StreamBuilder(
-        stream: FireStoreServices.getUser(auth.currentUser!.uid),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if(!snapshot.hasData){
-              return Center(child: loadingIndicator());
-            } else {
-      
-              var data = snapshot.data!.docs[0];
-              return Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 241, 174, 251),
+              Colors.white
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
+          )
+        ),
+        child: StreamBuilder(
+          stream: FireStoreServices.getUser(auth.currentUser!.uid),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if(!snapshot.hasData){
+                return Center(child: loadingIndicator());
+              } else {
+                var data = snapshot.data!.docs[0];
+                return Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Column(
+                      children: [
+                        data['imageUrl'] == '' ? const Icon(Icons.account_circle, size: 200, color: primary,).box.roundedFull.white.shadow3xl.make() 
+                        : Image.network(data['imageUrl'],fit: BoxFit.cover,height: 200,width: 200).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make().box.height(200).width(200).make(),
+                        10.heightBox,
+                        "${data['name']}".text.size(30).bold.color(highEmphasis).make(),
+                        "${data['email']}".text.size(25).color(fontGrey).make(),
+                      ],
+                    ),
+                  ),
+                  10.heightBox,
+                  const Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Stack(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          data['imageUrl'] == '' ? Image.asset(icUser,fit: BoxFit.cover,height: 100,width: 100, color: fontGrey,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make() 
-                          : Image.network(data['imageUrl'],fit: BoxFit.cover,height: 100,width: 100).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make(),
-                          if(data['password'] != '') Align(
-                            alignment: Alignment.bottomRight,
-                            child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 15,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {controller.nameController.text = data['name'];
-                              Get.to(()=> EditProfileInfo(data: data,));})),
-        
+                          Image.asset(icEdit, height: 50,color: highEmphasis,),
+                          5.heightBox,
+                          "Edit".text.color(highEmphasis).size(18).bold.make(),
+                          "Profile".text.color(highEmphasis).size(18).bold.make(),
                         ],
-                      ).box.height(100).width(100).make(),
-                      10.heightBox,
-                      "${data['name']}".text.size(20).fontFamily(bold).color(highEmphasis).make(),
-                      "${data['email']}".text.size(18).fontFamily(regular).color(fontGrey).make(),
+                      ).onTap(() {Get.to(()=> EditProfileInfo(data: data,));}),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(icPassword, height: 50,color: highEmphasis,),
+                          5.heightBox,
+                          "Change".text.color(highEmphasis).size(18).bold.make(),
+                          "Password".text.color(highEmphasis).size(18).bold.make(),
+                        ],
+                      ).onTap(() {Get.to(()=> ChangePassword(data: data,));}),
                     ],
                   ),
-                ),
-                10.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    "Edit Profile".text.color(highEmphasis).size(18).fontFamily(bold).make(),
-                    Image.asset(icRight, height: 18, color: lightGrey,)
-                  ],
-                ).onTap(() {Get.to(()=> EditProfileInfo(data: data,));}),
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    "Change Password".text.color(highEmphasis).size(18).fontFamily(bold).make(),
-                    Image.asset(icRight, height: 18, color: lightGrey,)
-                  ],
-                ).onTap(() {
-                  Get.to(()=> ChangePassword(data: data,));
-                }),
-                const Spacer(),
-                myButton(
-                  buttonSize: 20.0,
-                  textColor: primary,
-                  color: whiteColor,
-                  onPress: () async {
-                    await Get.put(AuthController()).signoutMethod(context);
-                    Get.offAll( ()=> const LoginScreen());
-                    },
-                  title: 'Sign Out'
-                ).box.border(color: primary, width: 2).roundedSM.width(context.screenWidth).make()
-              ]),
-          );
-          }
-
-        },
+                  const Spacer(),
+                  myButton(
+                    buttonSize: 20.0,
+                    textColor: primary,
+                    color: whiteColor,
+                    onPress: () async {
+                      await Get.put(AuthController()).signoutMethod(context);
+                      Get.offAll( ()=> const LoginScreen());
+                      },
+                    title: 'Log Out'
+                  ).box.border(color: primary, width: 2).roundedLg.width(context.screenWidth).make()
+                ]),
+            );
+            }
+      
+          },
+        ),
       ),
     );
   }

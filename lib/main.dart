@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
       title: "DIU Lab Assistant",
       theme: ThemeData(
         primarySwatch: Colors.purple,
-        scaffoldBackgroundColor: whiteColor,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 241, 174, 251),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: highEmphasis,
-            fontFamily: bold,
+            fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
-          backgroundColor: whiteColor,
-          elevation: 1,
+          backgroundColor: Color.fromARGB(255, 241, 174, 251),
+          elevation: 0,
           iconTheme: IconThemeData(
             color: darkFontGrey,
           )

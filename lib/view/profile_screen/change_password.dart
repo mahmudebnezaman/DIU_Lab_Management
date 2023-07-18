@@ -87,62 +87,74 @@ class _ChangePasswordState extends State<ChangePassword> {
         appBar: AppBar(
           title: "Change Password".text.make(),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Obx(
-            ()=> Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                customPasswordFeild(
-                  hint: 'xxxxxx', title: 'Old Password', obsText: isPass, suffixIcon: InkWell(
-                    onTap: toggleOldPasswordView,
-                    child: Icon(
-                      isPass 
-                        ? Icons.visibility 
-                        : Icons.visibility_off,
-                    )),
-                  controller: controller.oldpassController
-                ),
-                10.heightBox,
-                customPasswordFeild(
-                  hint: 'xxxxxx', title: 'New Password', obsText: isNewPass, suffixIcon: InkWell(
-                    onTap: togglePasswordView,
-                    child: Icon(
-                      isNewPass 
-                        ? Icons.visibility 
-                        : Icons.visibility_off,
-                    )),
-                  controller: controller.newpassController
-                ),
-                10.heightBox,
-                customPasswordFeild(
-                  hint: 'xxxxxx', title: 'Confirm Password', obsText: isConfirmPass, suffixIcon: InkWell(
-                    onTap: toggleConfirmPasswordView,
-                    child: Icon(
-                      isConfirmPass 
-                        ? Icons.visibility 
-                        : Icons.visibility_off,
-                    )),
-                  controller: controller.passController
-                ),
-                
-                const Spacer(),
-                controller.isloading.value ? loadingIndicator() : SizedBox(
-                  width: context.screenWidth-40,
-                  child: myButton(
-                    color: primary,
-                    buttonSize: 20.0,
-                    onPress: ()async{
-          
-                      controller.isloading(true);
-                      vaildation();
-                   },
-                    textColor: whiteColor,
-                    title: 'Change Password',
+        body: Container(
+          decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 241, 174, 251),
+              Colors.white
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
+          )
+        ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Obx(
+              ()=> Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  customPasswordFeild(
+                    hint: 'xxxxxx', title: 'Old Password', obsText: isPass, suffixIcon: InkWell(
+                      onTap: toggleOldPasswordView,
+                      child: Icon(
+                        isPass 
+                          ? Icons.visibility 
+                          : Icons.visibility_off,
+                      )),
+                    controller: controller.oldpassController
                   ),
-                ),
-                
-              ],
+                  10.heightBox,
+                  customPasswordFeild(
+                    hint: 'xxxxxx', title: 'New Password', obsText: isNewPass, suffixIcon: InkWell(
+                      onTap: togglePasswordView,
+                      child: Icon(
+                        isNewPass 
+                          ? Icons.visibility 
+                          : Icons.visibility_off,
+                      )),
+                    controller: controller.newpassController
+                  ),
+                  10.heightBox,
+                  customPasswordFeild(
+                    hint: 'xxxxxx', title: 'Confirm Password', obsText: isConfirmPass, suffixIcon: InkWell(
+                      onTap: toggleConfirmPasswordView,
+                      child: Icon(
+                        isConfirmPass 
+                          ? Icons.visibility 
+                          : Icons.visibility_off,
+                      )),
+                    controller: controller.passController
+                  ),
+                  
+                  const Spacer(),
+                  controller.isloading.value ? loadingIndicator() : SizedBox(
+                    width: context.screenWidth-40,
+                    child: myButton(
+                      color: primary,
+                      buttonSize: 20.0,
+                      onPress: ()async{
+            
+                        controller.isloading(true);
+                        vaildation();
+                     },
+                      textColor: whiteColor,
+                      title: 'Change Password',
+                    ),
+                  ),
+                  
+                ],
+              ),
             ),
           ),
         ),

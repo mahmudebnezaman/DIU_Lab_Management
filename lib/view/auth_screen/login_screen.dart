@@ -80,7 +80,6 @@ void changeScreen() {
 
    return Scaffold(
     resizeToAvoidBottomInset: false,
-    backgroundColor: whiteColor,
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -91,12 +90,12 @@ void changeScreen() {
               10.heightBox,
               Image.asset(icApplogo, width: 150,),
               5.heightBox,
-              'Sign In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
+              'Log In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
               25.heightBox,
               Obx(()=>
                Column(
                   children: [
-                    customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: const Icon(Icons.email_rounded), controller: controller.emailController),
+                    customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: const Icon(Icons.email), controller: controller.emailController),
                     10.heightBox,
                     customPasswordFeild(hint: 'xxxxxx', title: 'Password', obsText: isPass, suffixIcon: InkWell(
                       onTap: togglePasswordView,
@@ -112,7 +111,7 @@ void changeScreen() {
                         vaildation();
                       },
                       textColor: whiteColor,
-                      title: 'Sign In',
+                      title: 'Log In',
                       buttonSize: 20.0,
                     ).box.width(context.screenWidth).make(),
                   ],
