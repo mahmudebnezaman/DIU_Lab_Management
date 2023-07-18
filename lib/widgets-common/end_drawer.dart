@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diu_lab_management/const/images.dart';
+import 'package:diu_lab_management/const/loading_indicator.dart';
+import 'package:diu_lab_management/services/firestore_services.dart';
+import 'package:diu_lab_management/view/home_screen/class_details.dart';
 import 'package:path/path.dart';
 import 'package:diu_lab_management/const/consts.dart';
 import 'package:diu_lab_management/controller/auth_controller.dart';
@@ -14,29 +18,80 @@ Widget drawerWidget(width){
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Align(alignment: Alignment.centerLeft, child: const Icon(Icons.arrow_back,).onTap(() {Get.back();})),
-                10.heightBox,
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(icDashboard,height: 20,),
-                    20.widthBox,
-                    'Dashboard'.text.center.semiBold.size(20).make()
+                    const Icon(Icons.arrow_back,color: primary,size: 30,).onTap(() {Get.back();}),
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(Icons.home_filled, color: primary,size: 30),
+                            'Home'.text.semiBold.color(primary).make(),
+                          ],
+                        ).onTap(() {Get.off(()=> const HomeScreen());}),
+                        10.widthBox,
+                        Row(
+                          children: [
+                            const Icon(Icons.account_circle, color: primary,size: 30),
+                            'Profile'.text.semiBold.color(primary).make(),
+                          ],
+                        ).onTap(() {Get.to(()=> const ProfileScreen());})
+                      ],
+                    )
                   ],
-                ).box.padding(const EdgeInsets.symmetric(vertical: 20, horizontal: 30)).color(Colors.purpleAccent).width(width).roundedLg.shadow.make().onTap(() {Get.to(()=> const HomeScreen());}),
+                ),
                 10.heightBox,
-                Row(
-                  children: [
-                    Image.asset(icUser,height: 20,),
-                    20.widthBox,
-                    'Profile'.text.center.semiBold.size(20).make()
-                  ],
-                ).box.padding(const EdgeInsets.symmetric(vertical: 20, horizontal: 30)).color(Colors.greenAccent).width(width).roundedLg.shadow.make().onTap(() {Get.to(()=> const ProfileScreen());}),
-                const Spacer(),
+                'Your Classes'.text.semiBold.size(20).color(Colors.deepPurple).make(),
+                10.heightBox,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: StreamBuilder(
+                      stream: FireStoreServices.getCourse(),
+                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+                        if (!snapshot.hasData){
+                          return Center(
+                            child: loadingIndicator(),
+                          );
+                        }else if (snapshot.data!.docs.isEmpty){
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              'No course added yet!'.text.size(20).makeCentered()
+                            ],
+                          );
+                        }else{
+                          var data = snapshot.data!.docs;
+                          return ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: data.length,
+                            itemBuilder: (context, index){
+                              return ListTile(
+                                leading: Image.asset(icCourse, height: 25, color: whiteColor,),
+                                title: '${data[index]['course_title']}'.text.white.size(18).make(),
+                                subtitle: '${data[index]['section']}'.text.white.size(14).make(),
+                                trailing: Image.asset(icRight, height: 14, color: Colors.white30,),
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => ClassDetailsScreen(data: data[index])),
+                                  );
+                                },
+                              ).box.color(primary).roundedLg.padding(const EdgeInsets.all(8.0)).margin(const EdgeInsets.only(bottom: 8.0)).make();
+                            }
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                // const Spacer(),
                 myButton(
                   buttonSize: 20.0,
                   color: whiteColor,
                   textColor: primary,
-                  title: 'Sign Out',
+                  title: 'Log Out',
                   onPress:  () async {
                     await Get.put(AuthController()).signoutMethod(context);
                     Get.offAll( ()=> const LoginScreen());
