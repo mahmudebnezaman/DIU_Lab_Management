@@ -42,7 +42,7 @@ changeScreen(){
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 241, 174, 251),
+                Colors.blue,
                 Colors.white
               ],
               begin: Alignment.topCenter,

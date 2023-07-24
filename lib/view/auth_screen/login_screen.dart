@@ -106,7 +106,7 @@ void changeScreen() {
                       )), controller: controller.passwordController),
                     10.heightBox,
                     controller.isloading.value ?  loadingIndicator() : myButton(
-                      color: primary,
+                      color: Colors.green,
                       onPress: () {
                         vaildation();
                       },
@@ -125,7 +125,7 @@ void changeScreen() {
               ),
         
               10.heightBox,
-              'Create New Account'.text.color(primary).size(20).semiBold.make().onTap(() {
+              'Create New Account'.text.color(Colors.green).size(20).semiBold.make().onTap(() {
                 Get.to(()=> const SignUp());
               })
             ],

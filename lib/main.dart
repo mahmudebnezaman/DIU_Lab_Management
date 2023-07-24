@@ -14,17 +14,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "DIU Lab Assistant",
+      title: "DIU Lab Management",
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 241, 174, 251),
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 154, 210, 255),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: highEmphasis,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
-          backgroundColor: Color.fromARGB(255, 241, 174, 251),
+          backgroundColor: Colors.blue,
           elevation: 0,
           iconTheme: IconThemeData(
             color: darkFontGrey,

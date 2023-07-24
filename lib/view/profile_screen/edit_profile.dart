@@ -55,7 +55,7 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 241, 174, 251),
+                primary,
                 Colors.white
               ],
               begin: Alignment.topCenter,
@@ -71,8 +71,8 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
                   Stack(
                       children: [
                         widget.data['imageUrl'] == '' && controller.profileImagePath.isEmpty? const Icon(Icons.account_circle, size: 200, color: primary,).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
-                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 200,width: 200).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make()
-                        : Image.file(File(controller.profileImagePath.value), width: 200, fit: BoxFit.cover,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make(),
+                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 200,width: 200).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
+                        : Image.file(File(controller.profileImagePath.value), width: 200, fit: BoxFit.cover,).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make(),
                         Align(
                           alignment: Alignment.bottomRight,
                           child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 30,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {

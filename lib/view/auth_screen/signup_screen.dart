@@ -128,7 +128,7 @@ class _SignUpState extends State<SignUp> {
                 )), controller: retypePasswordController),
                 5.heightBox,
                 controller.isloading.value ? loadingIndicator() : myButton(
-                  color: isCheck == true ? primary : lightGrey,
+                  color: Colors.green,
                   title: 'Create New Account',
                   textColor: isCheck == true ? whiteColor : fontGrey,
                   onPress: (){
@@ -139,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                 10.heightBox,
                 'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
                 10.heightBox,
-                'Log In'.text.color(primary).size(20).semiBold.make().onTap((){
+                'Log In'.text.color(Colors.green).size(20).semiBold.make().onTap((){
                    Get.back();
                 }),
               ],

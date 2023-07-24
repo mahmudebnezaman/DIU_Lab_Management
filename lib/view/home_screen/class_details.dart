@@ -48,7 +48,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 241, 174, 251),
+                primary,
                 Colors.white
               ],
               begin: Alignment.topCenter,
@@ -62,13 +62,13 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
               children: [
                 'You have a class on:'.text.color(highEmphasis).size(18).semiBold.make(),
                 5.heightBox,
-                '${widget.data['routine']}'.text.color(Colors.green).size(18).semiBold.make(),
+                '${widget.data['routine']}'.text.color(whiteColor).size(18).semiBold.make(),
                 5.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                   'Room No: '.text.color(highEmphasis).size(18).semiBold.make(),
-                  '${widget.data['room']}'.text.color(Colors.green).size(18).semiBold.make(),
+                  '${widget.data['room']}'.text.color(whiteColor).size(18).semiBold.make(),
                   ],
                 ),
                 5.heightBox,
@@ -76,7 +76,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                   'Total Registered Student: '.text.color(highEmphasis).size(18).semiBold.make(),
-                  // '${widget.data['room']}'.text.color(Colors.green).size(18).semiBold.make(),
+                  // '${widget.data['room']}'.text.color(whiteColor).size(18).semiBold.make(),
                   StreamBuilder(
                     stream: FireStoreServices.getStudents(widget.data.id),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -92,7 +92,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       if (snapshot.data!.docs.isEmpty) {
                         return const Center(child: Text('0', style: TextStyle(fontSize: 20)));
                       }
-                      return student!.length.text.size(18).color(Colors.green).bold.make();
+                      return student!.length.text.size(18).color(whiteColor).bold.make();
                     }
                   )
                   ],
@@ -105,7 +105,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                   child: myButton(
                     title: 'Search',
                     buttonSize: 20.0,
-                    color: primary,
+                    color: Colors.green,
                     textColor: whiteColor,
                     onPress: (){
                       setState(() {
@@ -143,7 +143,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           
                           return ListTile(
-                            leading: Image.asset(icStudent, height: 40, color: whiteColor,),
+                            leading: Image.asset(icStudent, height: 40,),
                             title: Text('${filtered[index]['id']}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: whiteColor)),
                             onTap: () {
                               Get.to(()=> FinalResultScreen(data: filtered[index], courseID: widget.data.id,));

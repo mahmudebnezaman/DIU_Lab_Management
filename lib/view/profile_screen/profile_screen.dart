@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 241, 174, 251),
+              primary,
               Colors.white
             ],
             begin: Alignment.topCenter,

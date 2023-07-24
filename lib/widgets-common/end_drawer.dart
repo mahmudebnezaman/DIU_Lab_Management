@@ -29,20 +29,20 @@ Widget drawerWidget(width){
                             const Icon(Icons.home_filled, color: primary,size: 30),
                             'Home'.text.semiBold.color(primary).make(),
                           ],
-                        ).onTap(() {Get.off(()=> const HomeScreen());}),
+                        ).box.color(Colors.blue.shade50).rounded.padding(const EdgeInsets.all(8.0)).make().onTap(() {Get.off(()=> const HomeScreen());}),
                         10.widthBox,
                         Row(
                           children: [
                             const Icon(Icons.account_circle, color: primary,size: 30),
                             'Profile'.text.semiBold.color(primary).make(),
                           ],
-                        ).onTap(() {Get.to(()=> const ProfileScreen());})
+                        ).box.color(Colors.blue.shade50).rounded.padding(const EdgeInsets.all(8.0)).make().onTap(() {Get.to(()=> const ProfileScreen());})
                       ],
                     )
                   ],
                 ),
                 10.heightBox,
-                'Your Classes'.text.semiBold.size(20).color(Colors.deepPurple).make(),
+                'Your Classes'.text.semiBold.size(20).color(highEmphasis).make(),
                 10.heightBox,
                 Expanded(
                   child: SingleChildScrollView(
@@ -68,8 +68,8 @@ Widget drawerWidget(width){
                             itemCount: data.length,
                             itemBuilder: (context, index){
                               return ListTile(
-                                leading: Image.asset(icCourse, height: 25, color: whiteColor,),
-                                title: '${data[index]['course_title']}'.text.white.size(18).make(),
+                                leading: Image.asset(icCourse),
+                                title: '${data[index]['course_title']}'.text.color(highEmphasis).size(18).make(),
                                 subtitle: '${data[index]['section']}'.text.white.size(14).make(),
                                 trailing: Image.asset(icRight, height: 14, color: Colors.white30,),
                                 onTap: () {
@@ -87,6 +87,7 @@ Widget drawerWidget(width){
                   ),
                 ),
                 // const Spacer(),
+                5.heightBox,
                 myButton(
                   buttonSize: 20.0,
                   color: whiteColor,
@@ -97,7 +98,7 @@ Widget drawerWidget(width){
                     Get.offAll( ()=> const LoginScreen());
                   },
                 ).box.border(color: primary, width: 2).roundedLg.width(width).make(),
-                20.heightBox
+                5.heightBox
               ],
             ),
           ),

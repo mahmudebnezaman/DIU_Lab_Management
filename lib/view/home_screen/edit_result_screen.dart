@@ -54,26 +54,27 @@ class _EditResultScreenState extends State<EditResultScreen> {
       appBar:appBarWidget(context: context, title: 'Evaluate Result'),
       endDrawer: drawerWidget(context.screenWidth),
       body:Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 241, 174, 251),
-                Colors.white
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter
-            )
-          ),
+        height: context.screenHeight,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              primary,
+              Colors.white
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
+          )
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                '${widget.data['id']}'.text.color(Colors.green).bold.size(22).make(),
+                'Student ID: ${widget.data['id']}'.text.color(whiteColor).bold.size(22).make(),
                 10.heightBox,
                 Row(
                   children: [
-                  'Week One Lab Mark:'.text.semiBold.color(primary).size(18).make(),
+                  'Week One Lab Mark:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -103,7 +104,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Week Two Lab Mark:'.text.semiBold.color(primary).size(18).make(),
+                  'Week Two Lab Mark:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -133,7 +134,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Week Three Lab Mark:'.text.semiBold.color(primary).size(18).make(),
+                  'Week Three Lab Mark:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -163,7 +164,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Week Four Lab Mark:'.text.semiBold.color(primary).size(18).make(),
+                  'Week Four Lab Mark:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -193,7 +194,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Week Five Lab Mark:'.text.semiBold.color(primary).size(18).make(),
+                  'Week Five Lab Mark:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -223,7 +224,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Assignment:'.text.semiBold.color(primary).size(18).make(),
+                  'Assignment:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -253,7 +254,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Project:'.text.semiBold.color(primary).size(18).make(),
+                  'Project:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
@@ -283,7 +284,7 @@ class _EditResultScreenState extends State<EditResultScreen> {
                 5.heightBox,
                 Row(
                   children: [
-                  'Lab Final:'.text.semiBold.color(primary).size(18).make(),
+                  'Lab Final:'.text.semiBold.color(highEmphasis).size(18).make(),
                   5.widthBox,
                   SizedBox(
                     width: 50,
